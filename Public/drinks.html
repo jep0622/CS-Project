@@ -53,6 +53,9 @@
             transition: all 0.3s ease;
             font-family: inherit;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
         .drink-button:hover {
@@ -63,6 +66,14 @@
         
         .drink-button:active {
             transform: translateY(0);
+        }
+        
+        .drink-price {
+            background-color: #1976d2;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 1.2rem;
         }
         
         .back-button {
@@ -83,25 +94,74 @@
         .back-button:hover {
             background-color: #b3e5fc;
         }
+        
+        .loading {
+            font-style: italic;
+            color: #42a5f5;
+        }
+        
+        .error {
+            color: #c62828;
+            font-weight: bold;
+            margin: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Drinks Menu</h1>
         
-        <div class="drink-buttons">
-            <a href="oops.html">
-                <button class="drink-button">Coke</button>
-            </a>
-            <a href="oops.html">
-                <button class="drink-button">Coke 2</button>
-            </a>
-            <a href="oops.html">
-                <button class="drink-button">Coke 3</button>
-            </a>
+        <div id="drink-container" class="drink-buttons">
+            <div class="loading">Loading drinks from database...</div>
         </div>
         
         <a href="index.html" class="back-button">Back to Main Menu</a>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const drinkContainer = document.getElementById('drink-container');
+            
+            // Fetch drinks from the API
+            fetch('/api/drinks')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch drinks');
+                    }
+                    return response.json();
+                })
+                .then(drinks => {
+                    // Clear loading message
+                    drinkContainer.innerHTML = '';
+                    
+                    // Create a button for each drink
+                    drinks.forEach(drink => {
+                        const button = document.createElement('a');
+                        button.href = 'oops.html';
+                        button.innerHTML = `
+                            <button class="drink-button">
+                                <span class="drink-name">${drink.name}</span>
+                                <span class="drink-price">$${drink.price.toFixed(2)}</span>
+                            </button>
+                        `;
+                        drinkContainer.appendChild(button);
+                    });
+                    
+                    // If no drinks were found
+                    if (drinks.length === 0) {
+                        drinkContainer.innerHTML = '<div class="error">No drinks available</div>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    drinkContainer.innerHTML = `
+                        <div class="error">
+                            Oops! Could not load drinks. 
+                            <br>Please try again later.
+                        </div>
+                    `;
+                });
+        });
+    </script>
 </body>
 </html>
