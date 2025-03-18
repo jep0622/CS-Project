@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Academic Plan - Athens State University</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo" id="plan-title">Build Your Academic Plan</div>
+        <div class="tagline" id="plan-major">Mathematics</div>
+    </div>
+    
+    <div class="content">
+        <div class="plan-instructions">
+            Select courses to build your schedule one semester at a time.
+        </div>
+    
+        <div id="graduation-message" style="display: none;" class="graduation-message">
+            These are all of the required courses for your selected major. 
+        </div>
+    
+        <div class="plan-layout">
+            <!-- Major Requirements dropdown left -->
+            <div class="requirements-container">
+                <div class="dropdown-container">
+                    <div class="dropdown-header" id="requirements-dropdown">
+                        Major Requirements<span class="arrow">&#9662;</span>
+                    </div>
+                    <div class="dropdown-content" id="requirements-list">
+                        <!-- Major stuff from javascript -->
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Main selection menu container -->
+            <div class="plan-builder-container">
+                <div class="course-selection-panel">
+                    <div class="course-selection-header">Available Courses for <span id="current-semester">Fall 2025</span></div>
+                
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-filter="all">All Courses</button>
+                        <button class="filter-btn" data-filter="available">Available Now</button>
+                    </div>
+                
+                    <div class="available-courses" id="available-courses">
+                        <!-- Courses from javascript -->
+                    </div>
+                
+                    <div class="semester-plan">
+                        <div class="semester-header">
+                            <div>Selected Courses</div>
+                            <div class="credit-count"><span id="selected-count">0</span>/<span id="max-courses">5</span> courses</div>
+                        </div>
+                        <div class="semester-courses" id="selected-courses">
+                            <div class="empty-selection-message" id="empty-selection">No courses selected for this semester.</div>
+                        </div>
+                    </div>
+                
+                    <div class="controls">
+                        <button class="return-btn" id="back-btn">Go Back</button>
+                        <button class="next-semester-btn" id="next-semester-btn" disabled>Complete Semester & Continue</button>
+                    </div>
+                </div>
+            
+                <div id="completed-semesters">
+                    <!-- Completed semesters from javascript -->
+                </div>
+            </div>
+            
+            <!-- Electives dropdown right -->
+            <div class="electives-container">
+                <div class="dropdown-container">
+                    <div class="dropdown-header" id="electives-dropdown">
+                        Elective Options<span class="arrow">&#9662;</span>
+                    </div>
+                    <div class="dropdown-content" id="electives-list">
+                        <!-- Elective choices from JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="buttons-container">
+            <a href="index.html" class="return-btn">Return to Main Menu</a>
+        </div>
+    </div>
+    
+    <div class="footer">
+        2025 Athens State University
+    </div>
+    
+    <script src="scripts.js"></script>
+    <script src="database.js"></script>
+    <script src="plan.js"></script>
+</body>
+</html>
