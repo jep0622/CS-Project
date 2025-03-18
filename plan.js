@@ -120,15 +120,6 @@ function populateRequirementsList() {
     // Clear previous content if going back
     requirementsList.innerHTML = '';
     
-    // Check if the major's requirements are in the database
-    if (!majorRequirements || !majorRequirements[currentMajor]) {
-        const noRequirements = document.createElement('div');
-        noRequirements.className = 'course-item';
-        noRequirements.textContent = 'No requirements available.';
-        requirementsList.appendChild(noRequirements);
-        return;
-    }
-    
     // Get course codes for the major
     const requiredCodes = majorRequirements[currentMajor].requiredCourses;
     
@@ -161,15 +152,6 @@ function populateElectivesList() {
     
     // Clear previous content if going back
     electivesList.innerHTML = '';
-    
-    // Check if there are electives for the major in the database
-    if (!electiveCourses || !electiveCourses[currentMajor]) {
-        const noElectives = document.createElement('div');
-        noElectives.className = 'course-item';
-        noElectives.textContent = 'No elective options available.';
-        electivesList.appendChild(noElectives);
-        return;
-    }
     
     // Get electives for major
     const electiveCodes = electiveCourses[currentMajor].courses;
